@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>{% block title %}CIA Flask Demo{% endblock %}</title>
+        <!-- Add these links to the head section of your HTML -->
+    <link rel="stylesheet" href="https://m3.material.io/path/to/material-design-3.css">
+    <script src="https://m3.material.io/path/to/material-design-3.js"></script>
+
+    <!-- Additional styles or meta tags can be included here -->
+</head>
+<body>
+    <nav>
+        <ul>
+            <li><a href="{{ url_for('your_app.index') }}">Home</a></li>
+            <!-- Additional navigation links can be added here -->
+        </ul>
+    </nav>
+    
+    <div id="content">
+        {% block content %}{% endblock %}
+    </div>
+
+    <script src="{{ url_for('static', filename='js/script.js') }}"></script>
+    <!-- Additional scripts can be included here -->
+</body>
+</html>
