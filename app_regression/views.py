@@ -50,7 +50,7 @@ class RegressionModel:
 
         return model
 
-    def train(self, data_path='path/to/titanic.csv'):
+    def train(self):
         X_train, y_train = self.prepare_data()
         self.model.fit(X_train, y_train)
 
@@ -58,3 +58,6 @@ class RegressionModel:
         data = pd.DataFrame(passenger_data, index=[0])
         prediction = self.model.predict(data)
         return prediction
+
+def get_data():
+    return(pd.read_csv(os.path.join(FLASK_APP_PATH, 'app_regression/titanic.csv')))

@@ -1,6 +1,6 @@
 from datetime import datetime
 from flask import Blueprint, request, jsonify
-from .views import RegressionModel
+from .views import RegressionModel, get_data
 from .models import get_all_data
 
 regression_bp = Blueprint('regression', __name__)
@@ -20,7 +20,7 @@ def endpoint2():
 
 
 # Devuelve todo el dataset guardado en la base de datos
-@regression_bp.route('/data', methods=['GET'])
+@regression_bp.route('/datadb', methods=['GET'])
 def get_all_data():
     data = get_all_data()
     return jsonify(data)
@@ -35,3 +35,9 @@ def predict():
         return jsonify(prediction="El pasajero sobrevive", value=prediction, prediction_date=datetime.now().strftime('%Y-%m-%d %H:%M:%S'))
     else:
         return jsonify(prediction="El pasajero no sobrevive", value=prediction, prediction_date=datetime.now().strftime('%Y-%m-%d %H:%M:%S'))
+
+@regression_bp.route('/data', methods=['GET'])
+def read_csv():
+    data = get_data()
+    data_dict = data.to_dict(orient='records')
+    return jsonify(data_dict)
